@@ -1,8 +1,13 @@
 import React from 'react'
 
 const List = React.memo(({
-    key, id, title, completed, todoData, setTodoData, provided, snapshot, handleClick
+    id, title, completed, todoData, setTodoData, provided, snapshot,
 }) => {
+    
+    const handleClick = (id) => {
+        let newTodoData = todoData.filter((data) => (data.id !== id));
+        setTodoData(newTodoData);
+    };
 
     const handCompleChange = (id) => {
         let newTodoData = todoData.map((data) => {
@@ -31,4 +36,4 @@ const List = React.memo(({
     )
 });
 
-export default List
+export default List;
