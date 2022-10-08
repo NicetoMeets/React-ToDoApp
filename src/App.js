@@ -3,24 +3,37 @@ import "./App.css";
 import Lists from "./components/Lists";
 import Form from "./components/Form";
 
-export default function App() {
+const initialTodoData = localStorage.getItem('todoData') 
+? JSON.parse(localStorage.getItem('todoData'))
+: [];
 
-  const [todoData, setTodoData] = useState([]);
+function App() {
+
+  const [todoData, setTodoData] = useState(initialTodoData);
   const [value, setValue] = useState("");
 
   const handleSubmit = (e) => {
+    // form 안에 input을 전송할 때 페이지 리로드 되는 걸 막아줌
     e.preventDefault();
-    let newTodo = {
+
+    // 새로운 할 일 데이터
+    let newTodo = { 
       id: Date.now(),
       title: value,
       completed: false,
     };
+
+    // 원래 있던 할 일에 새로운 할 일 더해주기
     setTodoData(prev => [...prev, newTodo]);
+    localStorage.setItem('todoData', JSON.stringify([...todoData, newTodo]));
+
+    // 입력란에 있던 글씨 지워주기
     setValue("");
   };
 
   const handleRemoveClick = () => {
     setTodoData([]);
+    localStorage.setItem('todoData', JSON.stringify([]));
   }
 
   return (
@@ -36,3 +49,6 @@ export default function App() {
     </div>
   )
 };
+
+
+export default App;
