@@ -14,6 +14,9 @@
  
 # 구현 기능
 
+https://user-images.githubusercontent.com/108124042/208448912-f4fd9e87-ab62-4f08-8a4b-5ab8591baf60.mp4
+
+
 - 할일 목록 추가 및 저장
 - 체크버튼을 이용한 할일 완료 밑줄 긋기
 - 할일 목록 수정
